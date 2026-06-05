@@ -16,10 +16,10 @@
 //
 // =============================================
 
-const GAS_URL = "https://script.google.com/macros/s/AKfycbzAIfQurboRFhToFObhWq5i3IRUidWxbGf1LdDLC0exyjpLt5tvCbpBqhGUhtwFet06jg/exec";
+const GAS_URL = "https://script.google.com/macros/s/AKfycbzLfkA2mM4p7Z7sVhSyKbT3KodNOE2QgxsErnJbReh0bDkc5VKN7yKcQiKYBzwE-0hu/exec";
 
 // Cek apakah URL sudah dikonfigurasi
-const sheetsEnabled = GAS_URL && GAS_URL !== "https://script.google.com/macros/s/AKfycbzAIfQurboRFhToFObhWq5i3IRUidWxbGf1LdDLC0exyjpLt5tvCbpBqhGUhtwFet06jg/exec";
+const sheetsEnabled = GAS_URL && GAS_URL !== "https://script.google.com/macros/s/AKfycbzLfkA2mM4p7Z7sVhSyKbT3KodNOE2QgxsErnJbReh0bDkc5VKN7yKcQiKYBzwE-0hu/exec";
 
 // =============================================
 // SAVE SCORE KE GOOGLE SHEETS
