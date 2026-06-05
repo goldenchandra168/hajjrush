@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>🕋 Haji Rush — Petualangan Spiritual</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- LOGIN MODAL -->
+  <div id="loginModal" class="modal-overlay">
+    <div class="modal-box">
+      <div class="modal-kaabah">🕋</div>
+      <h2 class="modal-title">Haji Rush</h2>
+      <p class="modal-sub">Bismillah, masukkan namamu untuk memulai perjalanan</p>
+      <div class="input-group">
+        <input type="text" id="playerName" placeholder="Nama Jamaah..." maxlength="20" autocomplete="off">
+        <input type="email" id="playerEmail" placeholder="Email (opsional)" autocomplete="off">
+      </div>
+      <button id="startLoginBtn" class="btn-ihram">⚡ Berihram Sekarang!</button>
+      <p class="modal-note">Data tersimpan otomatis di browser-mu 🛡️</p>
+    </div>
+  </div>
+
+  <!-- WELCOME BACK SCREEN -->
+  <div id="welcomeBack" class="modal-overlay hidden">
+    <div class="modal-box welcome-box">
+      <div class="modal-kaabah">🌙</div>
+      <h2 class="modal-title" id="welcomeName">Assalamu'alaikum!</h2>
+      <p class="modal-sub">Selamat datang kembali, Jamaah!</p>
+      <div class="stats-row">
+        <div class="stat-item">
+          <span class="stat-num" id="wbBestScore">0</span>
+          <span class="stat-label">Skor Terbaik</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num" id="wbRuns">0</span>
+          <span class="stat-label">Total Run</span>
+        </div>
+      </div>
+      <button id="continueBtn" class="btn-ihram">🕋 Lanjutkan Perjalanan</button>
+      <button id="changeUserBtn" class="btn-ghost">Ganti Pengguna</button>
+    </div>
+  </div>
+
+  <!-- MAIN MENU -->
+  <div id="mainMenu" class="hidden">
+    <div id="menuBg" class="menu-background"></div>
+    <div class="menu-content">
+      <div class="menu-stars">✨</div>
+      <h1 class="game-title">
+        <span class="title-arabic">حج روش</span>
+        <span class="title-main">HAJI RUSH</span>
+        <span class="title-sub">Petualangan Spiritual</span>
+      </h1>
+      <div class="menu-player-info">
+        <span>🌙 Jamaah: <strong id="menuPlayerName"></strong></span>
+        <span>⭐ Terbaik: <strong id="menuBestScore">0</strong></span>
+      </div>
+      <div class="menu-buttons">
+        <button id="playBtn" class="btn-ihram big">
+          <span>🚀 Mulai Perjalanan</span>
+        </button>
+        <button id="leaderboardBtn" class="btn-secondary">🏆 Papan Skor</button>
+        <button id="howToBtn" class="btn-secondary">📖 Cara Main</button>
+      </div>
+      <div class="menu-footer">
+        <div class="footer-contact">
+          <p>💬 <a href="https://wa.me/62895322412300" target="_blank">WhatsApp: +62 895-3224-12300</a></p>
+          <p>📸 <a href="https://instagram.com/goldenflow.id" target="_blank">Instagram: @goldenflow.id</a></p>
+        </div>
+        <div class="footer-infaq">
+          <p>❤️ Dukung pengembangan via Infaq:</p>
+          <p class="bank-info">🏦 Bank Syariah Indonesia<br>
+          <strong>7167474505</strong><br>
+          a.n. Golden Chandra Oentoro</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW TO PLAY MODAL -->
+  <div id="howToModal" class="modal-overlay hidden">
+    <div class="modal-box how-box">
+      <h2 class="modal-title">📖 Cara Main</h2>
+      <div class="how-list">
+        <div class="how-item"><span class="how-key">SPACE / TAP</span><span>Lompat</span></div>
+        <div class="how-item"><span class="how-key">↓ / SWIPE↓</span><span>Slide (hindari unta)</span></div>
+        <div class="how-item"><span class="how-key">💧 Zamzam</span><span>+1 Nyawa / +50 Poin</span></div>
+        <div class="how-item"><span class="how-key">🕌 Checkpoint</span><span>Mini-game ritual</span></div>
+        <div class="how-item"><span class="how-key">⭐ Ihram Meter</span><span>Penuh = Invincible!</span></div>
+      </div>
+      <div class="phases-info">
+        <div class="phase-badge p1">🌙 Fase 1: Miqat - Madinah</div>
+        <div class="phase-badge p2">🕌 Fase 2: Thawaf Road - Mekkah</div>
+        <div class="phase-badge p3">🌅 Fase 3: Arafah - Wukuf</div>
+      </div>
+      <button class="btn-ihram" onclick="document.getElementById('howToModal').classList.add('hidden')">Siap! 🕋</button>
+    </div>
+  </div>
+
+  <!-- LEADERBOARD MODAL -->
+  <div id="leaderboardModal" class="modal-overlay hidden">
+    <div class="modal-box lb-box">
+      <h2 class="modal-title">🏆 Papan Skor</h2>
+      <div id="leaderboardList" class="lb-list">
+        <div class="lb-loading">Memuat data...</div>
+      </div>
+      <button class="btn-ihram" onclick="document.getElementById('leaderboardModal').classList.add('hidden')">Tutup</button>
+    </div>
+  </div>
+
+  <!-- GAME CANVAS AREA -->
+  <div id="gameArea" class="hidden">
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- HUD -->
+    <div id="hud">
+      <div id="ihramMeterWrapper">
+        <div class="hud-label">☪️ IHRAM</div>
+        <div class="ihram-bar-bg">
+          <div id="ihramBar" class="ihram-bar-fill"></div>
+        </div>
+      </div>
+      <div id="scoreHud">
+        <div class="hud-score">⭐ <span id="scoreDisplay">0</span></div>
+        <div class="hud-distance">📍 <span id="distDisplay">0</span>m</div>
+        <div class="hud-zamzam">💧 ×<span id="zamzamDisplay">0</span></div>
+      </div>
+      <div id="phaseHud">
+        <span id="phaseLabel">🌙 Fase 1: Miqat</span>
+      </div>
+    </div>
+
+    <!-- CHECKPOINT OVERLAY -->
+    <div id="checkpointOverlay" class="hidden">
+      <div class="checkpoint-box">
+        <div id="checkpointIcon" class="cp-icon">🕋</div>
+        <h3 id="checkpointTitle">Checkpoint Tawaf!</h3>
+        <p id="checkpointDesc">Swipe / tekan kiri-kanan untuk tawaf Ka'bah!</p>
+        <div id="checkpointGame" class="cp-game-area"></div>
+        <div class="cp-timer-bar"><div id="cpTimerFill" class="cp-timer-fill"></div></div>
+        <div id="doa-popup" class="doa-popup hidden">
+          <p class="doa-arabic" id="doaArabic">لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ</p>
+          <p class="doa-latin" id="doaLatin">Labbaik Allahumma Labbaik</p>
+          <p class="doa-arti" id="doaArti">Aku penuhi panggilan-Mu ya Allah</p>
+        </div>
+        <button id="cpDoneBtn" class="btn-ihram hidden">Lanjut ➡️</button>
+      </div>
+    </div>
+
+    <!-- FUNFACT TOAST -->
+    <div id="funfactToast" class="funfact-toast hidden">
+      <span id="funfactText">💧 Air Zamzam berasal dari telapak kaki Nabi Ismail!</span>
+    </div>
+
+    <!-- PAUSE BUTTON -->
+    <button id="pauseBtn" class="pause-btn">⏸</button>
+  </div>
+
+  <!-- GAME OVER SCREEN -->
+  <div id="gameOverScreen" class="hidden">
+    <div class="go-overlay"></div>
+    <div class="go-content">
+      <div class="go-arabic">إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ</div>
+      <h2 class="go-title">Waktunya Istirahat Spiritual</h2>
+      <p class="go-quote">"Sesungguhnya Allah bersama orang-orang yang sabar" — QS Al-Baqarah: 153</p>
+      <div class="go-stats">
+        <div class="go-stat"><span class="go-num" id="goScore">0</span><span>Skor</span></div>
+        <div class="go-stat"><span class="go-num" id="goDist">0</span><span>Meter</span></div>
+        <div class="go-stat"><span class="go-num" id="goZamzam">0</span><span>Zamzam</span></div>
+      </div>
+      <div id="newRecordBanner" class="new-record hidden">🌟 Rekor Baru!</div>
+      <div class="go-buttons">
+        <button id="retryBtn" class="btn-ihram">🔄 Coba Lagi</button>
+        <button id="menuBtn" class="btn-secondary">🏠 Menu Utama</button>
+      </div>
+      <div class="go-share">
+        <p>Bagikan pencapaianmu:</p>
+        <a id="waShareBtn" href="#" target="_blank" class="share-btn wa">💬 WhatsApp</a>
+        <a id="igShareBtn" href="https://instagram.com/goldenflow.id" target="_blank" class="share-btn ig">📸 Instagram</a>
+      </div>
+      <div class="go-contact">
+        <p>Ingin info Umroh & Haji? Hubungi:</p>
+        <a href="https://wa.me/62895322412300" target="_blank" class="contact-link">📱 +62 895-3224-12300 (Golden Flow)</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="gsheets.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
