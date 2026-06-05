@@ -19,7 +19,7 @@
 const GAS_URL = "https://script.google.com/macros/s/AKfycbzAIfQurboRFhToFObhWq5i3IRUidWxbGf1LdDLC0exyjpLt5tvCbpBqhGUhtwFet06jg/exec";
 
 // Cek apakah URL sudah dikonfigurasi
-const sheetsEnabled = GAS_URL && GAS_URL !== "PASTE_YOUR_APPS_SCRIPT_URL_HERE";
+const sheetsEnabled = GAS_URL && GAS_URL !== "https://script.google.com/macros/s/AKfycbzAIfQurboRFhToFObhWq5i3IRUidWxbGf1LdDLC0exyjpLt5tvCbpBqhGUhtwFet06jg/exec";
 
 // =============================================
 // SAVE SCORE KE GOOGLE SHEETS
